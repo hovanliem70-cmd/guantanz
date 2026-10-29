@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiaxian Kaiwei Electronics City — Software Development & Digital Solutions</title>
+<meta name="description" content="Jiaxian Kaiwei Electronics City is a software development company focused on mobile applications, enterprise software, and digital services.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231e3a5f'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>K</text></svg>">
+<style>
+  /* ============ Reset & Base ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1a2332;
+    background: #ffffff;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ============ Header / Navigation ============ */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e8ecf1;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-mark {
+    width: 40px;
+    height: 40px;
+    background: #1e3a5f;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a2332;
+    line-height: 1.3;
+  }
+  .logo-text span {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: #6b7a8f;
+    letter-spacing: 0.5px;
+  }
+  nav ul {
+    display: flex;
+    gap: 36px;
+  }
+  nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4a5568;
+    transition: color 0.2s;
+    position: relative;
+  }
+  nav a:hover, nav a.active {
+    color: #1e3a5f;
+  }
+  nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #1e3a5f;
+  }
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #1a2332;
+  }
+
+  /* ============ Hero Section ============ */
+  .hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5380 50%, #1e3a5f 100%);
+    color: #fff;
+    padding: 100px 0 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+  }
+  .hero-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: 0.3px;
+  }
+  .hero h1 {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  .hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 36px;
+  }
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .hero-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+  }
+  .hero-badge svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.9;
+  }
+
+  /* ============ Section Base ============ */
+  section {
+    padding: 80px 0;
+  }
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 56px;
+  }
+  .section-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1e3a5f;
+    background: #eaf0f7;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .section-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a2332;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+  .section-header p {
+    font-size: 16px;
+    color: #6b7a8f;
+    line-height: 1.7;
+  }
+
+  /* ============ About Section ============ */
+  .about {
+    background: #f8fafc;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-text h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a2332;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .about-text p {
+    color: #4a5568;
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid #e8ecf1;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e3a5f;
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: #6b7a8f;
+    margin-top: 6px;
+  }
+
+  /* ============ Services Section ============ */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .service-card {
+    background: #fff;
+    border: 1px solid #e8ecf1;
+    border-radius: 14px;
+    padding: 36px 28px;
+    transition: all 0.25s ease;
+  }
+  .service-card:hover {
+    border-color: #1e3a5f;
+    box-shadow: 0 8px 30px rgba(30,58,95,0.08);
+    transform: translateY(-2px);
+  }
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    background: #eaf0f7;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .service-icon svg {
+    width: 26px;
+    height: 26px;
+    color: #1e3a5f;
+  }
+  .service-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a2332;
+    margin-bottom: 12px;
+  }
+  .service-card p {
+    font-size: 14px;
+    color: #6b7a8f;
+    line-height: 1.7;
+  }
+
+  /* ============ Products Section ============ */
+  .products {
+    background: #f8fafc;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .product-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e8ecf1;
+    transition: all 0.25s ease;
+  }
+  .product-card:hover {
+    box-shadow: 0 8px 30px rgba(30,58,95,0.1);
+    transform: translateY(-2px);
+  }
+  .product-banner {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .banner-1 { background: linear-gradient(135deg, #2d5380, #1e3a5f); }
+  .banner-2 { background: linear-gradient(135deg, #3a7d5c, #2a5c42); }
+  .banner-3 { background: linear-gradient(135deg, #8b5a2b, #6b4423); }
+  .product-body {
+    padding: 24px;
+  }
+  .product-body h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a2332;
+    margin-bottom: 8px;
+  }
+  .product-body p {
+    font-size: 14px;
+    color: #6b7a8f;
+    line-height: 1.6;
+  }
+  .product-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .product-tag {
+    font-size: 12px;
+    color: #1e3a5f;
+    background: #eaf0f7;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  /* ============ Why Us Section ============ */
+  .whyus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .whyus-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .whyus-num {
+    width: 44px;
+    height: 44px;
+    background: #1e3a5f;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .whyus-item h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a2332;
+    margin-bottom: 8px;
+  }
+  .whyus-item p {
+    font-size: 14px;
+    color: #6b7a8f;
+    line-height: 1.7;
+  }
+
+  /* ============ Footer ============ */
+  footer {
+    background: #1a2332;
+    color: rgba(255,255,255,0.7);
+    padding: 56px 0 28px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  .footer-brand .logo-text {
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .footer-brand .logo-text span {
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-brand p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 16px;
+    max-width: 320px;
+  }
+  .footer-col h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+  .footer-col a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+  }
+  .footer-col a:hover {
+    color: #fff;
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ============ Responsive ============ */
+  @media (max-width: 768px) {
+    .nav ul {
+      display: none;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      flex-direction: column;
+      padding: 20px 24px;
+      gap: 16px;
+      border-bottom: 1px solid #e8ecf1;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+    .nav ul.open { display: flex; }
+    .menu-toggle { display: block; }
+    .hero { padding: 60px 0 80px; }
+    .hero h1 { font-size: 30px; }
+    .hero p { font-size: 16px; }
+    section { padding: 56px 0; }
+    .section-header h2 { font-size: 26px; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat-num { font-size: 24px; }
+    .services-grid, .products-grid { grid-template-columns: 1fr; }
+    .whyus-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo">
+      <div class="logo-mark">K</div>
+      <div class="logo-text">
+        Jiaxian Kaiwei Electronics City
+        <span>Software Development & Digital Solutions</span>
+      </div>
+    </a>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#whyus">Why Choose Us</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ Hero ============ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-label">Software Development Company</span>
+      <h1>Building Reliable Software for a Connected World</h1>
+      <p>Jiaxian Kaiwei Electronics City is a technology company dedicated to mobile application development, enterprise software solutions, and digital services that help businesses and users thrive in the digital economy.</p>
+      <div class="hero-badges">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Mobile App Development
+        </div>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Enterprise Software
+        </div>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Digital Solutions
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ About Us ============ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">About Us</span>
+      <h2>A Technology Company Focused on Software Innovation</h2>
+      <p>We combine engineering excellence with product thinking to deliver software that matters.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h3>Who We Are</h3>
+        <p>Jiaxian Kaiwei Electronics City is a software development and digital services company. Our team of engineers, designers, and product specialists work together to create high-quality mobile applications and enterprise software products.</p>
+        <p>We believe that great software is built on solid engineering, user-centered design, and a deep understanding of the problems we are solving. From concept to deployment, we manage every stage of the product lifecycle with care and precision.</p>
+        <p>Our mission is to build reliable, secure, and user-friendly software that delivers real value to our clients and their end users.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Engineering Team</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Services ============ -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Our Services</span>
+      <h2>Full-Stack Software Development Services</h2>
+      <p>From mobile apps to enterprise systems, we offer end-to-end development capabilities.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3>Mobile App Development</h3>
+        <p>Native and cross-platform mobile applications for Android and iOS, built with modern frameworks and best practices for performance and security.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Enterprise Software</h3>
+        <p>Custom enterprise applications, internal tools, and business process automation systems designed to improve operational efficiency and scalability.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Web Application Development</h3>
+        <p>Responsive web applications, SaaS platforms, and e-commerce solutions built with robust front-end and back-end architectures.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <h3>UI/UX Design</h3>
+        <p>User experience research, interface design, and prototyping services that ensure our products are intuitive, accessible, and delightful to use.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Software Testing & QA</h3>
+        <p>Comprehensive quality assurance services including automated testing, performance testing, and security audits to ensure software reliability.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Maintenance & Support</h3>
+        <p>Ongoing software maintenance, feature updates, and technical support services to keep your products running smoothly after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Products ============ -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Our Products</span>
+      <h2>Software Products We Develop</h2>
+      <p>We build and maintain a portfolio of software products across multiple categories.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-banner banner-1">App</div>
+        <div class="product-body">
+          <h3>Productivity & Utility Apps</h3>
+          <p>A suite of mobile applications designed to help users organize tasks, manage time, and improve daily productivity.</p>
+          <div class="product-tags">
+            <span class="product-tag">Android</span>
+            <span class="product-tag">Productivity</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-banner banner-2">Biz</div>
+        <div class="product-body">
+          <h3>Business Management Tools</h3>
+          <p>Enterprise-grade software tools for inventory management, sales tracking, and business analytics for small and medium enterprises.</p>
+          <div class="product-tags">
+            <span class="product-tag">Enterprise</span>
+            <span class="product-tag">Analytics</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-banner banner-3">Web</div>
+        <div class="product-body">
+          <h3>Digital Service Platforms</h3>
+          <p>Web-based platforms that connect service providers with users, delivering convenient and reliable digital experiences.</p>
+          <div class="product-tags">
+            <span class="product-tag">Web</span>
+            <span class="product-tag">SaaS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Why Choose Us ============ -->
+<section id="whyus">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Why Choose Us</span>
+      <h2>What Sets Our Software Apart</h2>
+      <p>We are committed to excellence in every project we undertake.</p>
+    </div>
+    <div class="whyus-grid">
+      <div class="whyus-item">
+        <div class="whyus-num">01</div>
+        <div>
+          <h3>Engineering Excellence</h3>
+          <p>Our team follows industry-standard coding practices, rigorous code reviews, and modern development methodologies to ensure high-quality software.</p>
+        </div>
+      </div>
+      <div class="whyus-item">
+        <div class="whyus-num">02</div>
+        <div>
+          <h3>User-Centered Design</h3>
+          <p>Every product we build starts with understanding the user. We design interfaces that are intuitive, accessible, and enjoyable to use.</p>
+        </div>
+      </div>
+      <div class="whyus-item">
+        <div class="whyus-num">03</div>
+        <div>
+          <h3>Security First</h3>
+          <p>We integrate security best practices throughout the development lifecycle — from data encryption to secure authentication and regular audits.</p>
+        </div>
+      </div>
+      <div class="whyus-item">
+        <div class="whyus-num">04</div>
+        <div>
+          <h3>Long-Term Partnership</h3>
+          <p>We don't just deliver software and walk away. We provide ongoing maintenance, updates, and support to ensure your product continues to perform.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Privacy Policy ============ -->
+<section id="privacy" style="background:#f8fafc;">
+  <div class="container" style="max-width:800px;">
+    <div class="section-header">
+      <span class="section-tag">Legal</span>
+      <h2>Privacy Policy</h2>
+      <p>How we collect, use, and protect your information.</p>
+    </div>
+    <div style="color:#4a5568; line-height:1.8; font-size:15px;">
+      <h3 style="font-size:18px; color:#1a2332; margin:24px 0 12px;">Information We Collect</h3>
+      <p>We may collect limited personal information that you provide directly when using our software products, such as your name, email address, and any information needed to deliver our services to you.</p>
+      <h3 style="font-size:18px; color:#1a2332; margin:24px 0 12px;">How We Use Information</h3>
+      <p>The information we collect is used to operate, maintain, and improve our software products, provide customer support, and communicate important updates about our services.</p>
+      <h3 style="font-size:18px; color:#1a2332; margin:24px 0 12px;">Data Security</h3>
+      <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+      <h3 style="font-size:18px; color:#1a2332; margin:24px 0 12px;">Contact Us</h3>
+      <p>If you have any questions about this Privacy Policy, you may reach us through the contact channels provided within our software products.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Terms of Service ============ -->
+<section id="terms">
+  <div class="container" style="max-width:800px;">
+    <div class="section-header">
+      <span class="section-tag">Legal</span>
+      <h2>Terms of Service</h2>
+      <p>Terms and conditions for using our software products and services.</p>
+    </div>
+    <div style="color:#4a5568; line-height:1.8; font-size:15px;">
+      <h3 style="font-size:18px; color:#1a2332; margin:24px 0 12px;">Use of Our Services</h3>
+      <p>Our software products and services are provided for lawful purposes only. You agree to use them in compliance with all applicable laws and regulations.</p>
+      <h3 style="font-size:18px; color:#1a2332; margin:24px 0 12px;">Intellectual Property</h3>
+      <p>All content, features, and functionality of our software products are the intellectual property of Jiaxian Kaiwei Electronics City and are protected by applicable copyright and trademark laws.</p>
+      <h3 style="font-size:18px; color:#1a2332; margin:24px 0 12px;">Disclaimer</h3>
+      <p>Our services are provided "as is" without warranties of any kind. We do not guarantee that our software will be uninterrupted, error-free, or completely secure.</p>
+      <h3 style="font-size:18px; color:#1a2332; margin:24px 0 12px;">Changes to Terms</h3>
+      <p>We reserve the right to update or modify these terms at any time. Continued use of our services after changes constitutes acceptance of the updated terms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-text">
+          Jiaxian Kaiwei Electronics City
+          <span>Software Development & Digital Solutions</span>
+        </div>
+        <p>A software development company committed to building reliable, secure, and user-friendly digital products for businesses and consumers worldwide.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#whyus">Why Choose Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2024 Jiaxian Kaiwei Electronics City. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+    });
+  });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('#navMenu a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
